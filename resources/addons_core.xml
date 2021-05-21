@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addonCore>
+  <label>RasterReprojection</label>
+  <version>1.2</version>
+  <type>Toolbox</type>
+  <identifier>7815b82a-c869-4ed7-9be7-831c442e94a7</identifier>
+  <summary>reproject raster data, handles projected, geographic, and geolocated</summary>
+  <createdBy name="Jeff Dozier"/>
+  <image>resources/screenshot.png</image>
+</addonCore>

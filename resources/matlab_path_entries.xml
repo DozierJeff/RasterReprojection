@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paths>
+  <path>.</path>
+  <path>Examples</path>
+  <path>Examples\ElevMatchLandsat</path>
+  <path>Examples\ElevMatchLandsat\html</path>
+  <path>Examples\GeolocatedInput</path>
+  <path>Examples\GeolocatedInput\html</path>
+  <path>Examples\Proj2Proj</path>
+  <path>Examples\Proj2Proj\html</path>
+  <path>Examples\affineUTM2Albers</path>
+  <path>Examples\affineUTM2Albers\html</path>
+  <path>doc</path>
+  <path>util</path>
+  <path>C__\Users\dozie\MATLAB Drive\JeffFunctionLib\Mapping</path>
+  <path>C__\Users\dozie\MATLAB Drive\JeffFunctionLib\General</path>
+</paths>
