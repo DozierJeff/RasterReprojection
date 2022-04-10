@@ -17,7 +17,7 @@ if verLessThan('map','5.0')
     proj = defaultm(p);
 else
     % hack hack: I started with the US Albers projection, got its wkt (well
-    % known string), edited the wkt, and then use it to create the projcrs
+    % known text), edited the wkt, and then use it to create the projcrs
     % (MATLAB could use a more explicit method to create a custom projcrs)
     wkt = "PROJCRS[""High Mountain Asia Albers Equal Area Conic"",BASEGEOGCRS[""WGS84"",DATUM[""World Geodetic Survey 1984"",ELLIPSOID[""WGS 1984"",6378137,298.257223563,LENGTHUNIT[""metre"",1]]],PRIMEM[""Greenwich"",0,ANGLEUNIT[""Degree"",0.0174532925199433]]],CONVERSION[""High Mountain Asia Albers Equal Area Conic"",METHOD[""Albers Equal Area"",ID[""EPSG"",9822]],PARAMETER[""Latitude of false origin"",36,ANGLEUNIT[""Degree"",0.0174532925199433],ID[""EPSG"",8821]],PARAMETER[""Longitude of false origin"",85,ANGLEUNIT[""Degree"",0.0174532925199433],ID[""EPSG"",8822]],PARAMETER[""Latitude of 1st standard parallel"",25,ANGLEUNIT[""Degree"",0.0174532925199433],ID[""EPSG"",8823]],PARAMETER[""Latitude of 2nd standard parallel"",47,ANGLEUNIT[""Degree"",0.0174532925199433],ID[""EPSG"",8824]],PARAMETER[""Easting at false origin"",0,LENGTHUNIT[""metre"",1],ID[""EPSG"",8826]],PARAMETER[""Northing at false origin"",0,LENGTHUNIT[""metre"",1],ID[""EPSG"",8827]]],CS[Cartesian,2],AXIS[""(E)"",east,ORDER[1],LENGTHUNIT[""metre"",1]],AXIS[""(N)"",north,ORDER[2],LENGTHUNIT[""metre"",1]],USAGE[SCOPE[""unknown""],AREA[""High Mountain Asia""],BBOX[23,60,54,110]]]";
     % create the projcrs from the edited wkt
