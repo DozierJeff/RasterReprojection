@@ -57,21 +57,41 @@ if cellRatio>thresholdRatio
     if ~isfloat(raster)
         A(raster==fillvalue) = NaN;
     end
+    arange = [min(A,[],'all','omitnan') max(A,[],'all','omitnan')];
     if inProj
         [newRaster,newInRR] = mapresize(A,InRR,2/cellRatio,method);
-        if ~strcmpi(method,'nearest') && any(isnan(newRaster),'all')
-            % use nearest neighbor to keep NaNs from propagating
-            t = isnan(newRaster);
-            [holdRaster,~] = mapresize(A,InRR,2/cellRatio,'nearest');
-            newRaster(t) = holdRaster(t);
+        % check outside range, which can happen with cubic interpolation
+        if ~strcmpi('method','nearest')
+            t = min(newRaster,[],"all","omitnan")<arange(1) ||...
+                max(newRaster,[],"all","omitnan")>arange(2);
+            % bilinear to keep cubic from interpolating outside range
+            if any(t,'all')
+                [holdRaster,~] = mapresize(A,InRR,2/cellRatio,'bilinear');
+                newRaster(t) = holdRaster(t);
+            end
+            if any(isnan(newRaster),'all')
+                % use nearest neighbor to keep NaNs from propagating
+                t = isnan(newRaster);
+                [holdRaster,~] = mapresize(A,InRR,2/cellRatio,'nearest');
+                newRaster(t) = holdRaster(t);
+            end
         end
     else
-        [newRaster,newInRR] = georesize(A,InRR,2/cellRatio);
-        if ~strcmpi(method,'nearest') && any(isnan(newRaster),'all')
-            % use nearest neighbor to keep NaNs from propagating
-            t = isnan(newRaster);
-            [holdRaster,~] = georesize(A,InRR,2/cellRatio,'nearest');
-            newRaster(t) = holdRaster(t);
+        [newRaster,newInRR] = georesize(A,InRR,2/cellRatio,method);
+        if ~strcmpi(method,'nearest')
+            t = min(newRaster,[],"all","omitnan")<arange(1) ||...
+                max(newRaster,[],"all","omitnan")>arange(2);
+            % bilinear to keep cubic from interpolating outside range
+            if any(t,'all')
+                [holdRaster,~] = georesize(A,InRR,2/cellRatio,'bilinear');
+                newRaster(t) = holdRaster(t);
+            end
+            if any(isnan(newRaster),'all')
+                % use nearest neighbor to keep NaNs from propagating
+                t = isnan(newRaster);
+                [holdRaster,~] = georesize(A,InRR,2/cellRatio,'nearest');
+                newRaster(t) = holdRaster(t);
+            end
         end
     end
     t = isnan(newRaster);
